@@ -1,24 +1,55 @@
 package gitrep;
 
 public class Singer {
-    String name;
-    int noOfPerformances;
-    double earnings;
-    Song favoriteSong;
+    private String name;
+    private int noOfPerformances;
+    private double earnings;
+    private Song favoriteSong;
+    private static int totalPerformances = 0;
     
-    public Singer(String n, int p, double e, Song f){
-        name = n;
-        noOfPerformances = p;
-        earnings = e;
-        favoriteSong = f;
+    public Singer(String n){
+        this.name = n;
+        this.noOfPerformances = 0;
+        this.earnings = 0.0;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getNoOfPerformances() {
+        return noOfPerformances;
+    }
+
+    public double getEarnings() {
+        return earnings;
+    }
+
+    public Song getFavoriteSong() {
+        return favoriteSong;
+    }
+
+    public void setFavoriteSong(Song favoriteSong) {
+        this.favoriteSong = favoriteSong;
+    }
+    
+    public void changeFavSong(Song favoriteSong){
+        this.setFavoriteSong(favoriteSong);
+    }
+    
+    public static int getTotalPerformances(){
+        return totalPerformances;
     }
     
     public void performForAudience(int people){
-        noOfPerformances += 1;
-        earnings += people * 100;
+        noOfPerformances++;
+        earnings += (people * 100);
+        totalPerformances += getNoOfPerformances();
     }
     
-    public void changeFavSong(Song song){
-        favoriteSong = song;
+    public void performForAudience(Singer otherSinger, int people){
+        noOfPerformances++;
+        earnings += (people * 100);
+        totalPerformances += getNoOfPerformances();
     }
 }
